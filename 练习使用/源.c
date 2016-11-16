@@ -23,7 +23,7 @@ int main(void)
 			loop(thenum);
 			di = digui(thenum);
 		}
-		printf("使用递归求得的值是：%ld", di);
+		printf("使用递归求得的值是：%ld\n", di);
 	}
 
 	system("pause");
@@ -38,16 +38,17 @@ int loop(int a)
 	{
 		sum *= i;
 	}
-	printf("使用循环求得的值是：%ld", sum);
+	printf("使用循环求得的值是：%ld\n", sum);
 	return 0;
 }
 
 long digui(int a)
 {
-	long sum = a;
-	while (a > 0)
+	long sum;
+	if (a >1)
 	{
-		sum *= digui(a - 1);
+		sum =a*digui(a - 1);
 	}
+	else sum = 1;
 	return sum;
 }
