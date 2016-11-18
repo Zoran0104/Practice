@@ -2,6 +2,7 @@
 double loop(int a);
 double loop2(int a);
 double digui1(int a);
+double digui2(int a);
 
 int main(void)
 {
@@ -14,7 +15,7 @@ int main(void)
 			printf("您输入的数字有误，请重新输入：");
 			continue;
 		}
-		printf("loop1:%-3.0lf,loop2:%-3.0lf,", loop(innum), loop2(innum));
+		printf("loop1:%-3.0lf,loop2:%-3.0lf,digui1=%-3.0lf", loop(innum), loop2(innum),digui1(innum));
 
 	}
 
@@ -42,5 +43,19 @@ double loop2(int a)
 
 double digui1(int a)
 {
-	return 0.0;
+	double outnum=a;
+	if (a > 0)
+		outnum =outnum* digui1(a - 1);
+	else outnum = 1;
+	return outnum;
+}
+
+double digui2(int a)
+{
+	double sum = a;
+	while (a)
+	{
+		sum *= digui2(a - 1);
+	}
+	return sum;
 }
