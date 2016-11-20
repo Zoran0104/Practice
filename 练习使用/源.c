@@ -1,24 +1,54 @@
 #include<stdio.h>
+double loop1(int a);
+double loop2(int a);
+double loop3(int a);
+double digui(int a);
 int main(void)
 {
-	int i, j, n;
-	while (scanf_s("%d", &n) == 1)
+	int a;
+	printf("Please enter a num to loop:");
+	while (scanf_s("%d", &a) == 1)
 	{
-		for (i = 1; i <= n; i++)
-		{
-			for (j = 1; j <= n + i - 1; j++)
-				if (j > n - i)
-					printf("*");
-				else printf(" ");
-				printf("\n");
-		}
-		for (i = 1; i < n; i++)
-		{
-			for (j = 1; j <= 2 * n - i - 1; j++)
-				if (j > i)
-					printf("*");
-				else printf(" ");
-				printf("\n");
-		}
+		printf("loop1:%-20.2lf,loop:%-20.2lf,loop3:%-20.2lf,loop4:%-20.2lf\n", loop1(a), loop2(a), loop3(a), digui(a));
+		printf("Please enter a num to loop:");
 	}
+	
+}
+double loop1(int a)
+{
+	double i=1;
+	while (a > 0)
+	{
+		i *= a;
+		a--;
+	}
+	return i;
+}
+double loop2(int a)
+{
+	int i;
+	double sum=1;
+	for (i = 1; i <= a; i++)
+	{
+		sum *= i;
+	}
+	return sum;
+}
+double loop3(int a)
+{
+	double sum=1;
+	do
+	{
+		sum *= a;
+		a--;
+	} while (a > 0);
+	return sum;
+}
+double digui(int a)
+{
+	double sum=a;
+	if (a > 0)
+		sum *= digui(a - 1);
+	else sum = 1;
+	return sum;
 }
