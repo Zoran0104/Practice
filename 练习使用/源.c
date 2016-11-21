@@ -2,53 +2,45 @@
 double loop1(int a);
 double loop2(int a);
 double loop3(int a);
-double digui(int a);
 int main(void)
 {
-	int a;
-	printf("Please enter a num to loop:");
-	while (scanf_s("%d", &a) == 1)
+	int num;
+	printf("Please enter a number between 1 to 12:");
+	while (scanf_s("%d", &num) == 1)
 	{
-		printf("loop1:%-20.2lf,loop:%-20.2lf,loop3:%-20.2lf,loop4:%-20.2lf\n", loop1(a), loop2(a), loop3(a), digui(a));
-		printf("Please enter a num to loop:");
+		if (num > 12 || num <= 0) 
+		{
+			printf("Rewrite a number:");
+			continue;
+		}
+		printf("loop1:%11.2lf;loop2:%11.2lf;loop3:%11.2lf",loop1(num),loop2(num),loop3(num));
 	}
-	
+
 }
 double loop1(int a)
 {
-	double i=1;
-	while (a > 0)
+	double sum=1;
+	for (; a>0; a--)
 	{
-		i *= a;
-		a--;
+		sum *= a;
 	}
-	return i;
+	return sum;
 }
 double loop2(int a)
 {
-	int i;
-	double sum=1;
-	for (i = 1; i <= a; i++)
+	double sum = 1;
+	while (a)
 	{
-		sum *= i;
+		sum *= a;
+		a--;
 	}
 	return sum;
 }
 double loop3(int a)
 {
-	double sum=1;
-	do
-	{
-		sum *= a;
-		a--;
-	} while (a > 0);
-	return sum;
-}
-double digui(int a)
-{
 	double sum=a;
-	if (a > 0)
-		sum *= digui(a - 1);
+	if (a)
+		sum *= loop3(a - 1);
 	else sum = 1;
 	return sum;
 }
