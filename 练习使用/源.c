@@ -1,11 +1,18 @@
-#include <stdio.h>
-int main(void) 
-{     
-	char fname[40];     
-	char lname[40];          
-	printf("Enter your first name: ");     
-	scanf_s("%s", fname);     
-	printf("Enter your last name: ");     
-	scanf_s("%s", lname);     
-	printf("%s, %s\n", lname, fname);     
-	return 0; } 
+#include<stdio.h>
+#define timeeach 60
+int main()
+{
+	int innum, hours, minute;
+	printf("Please enter a number to deserb the time:");
+	while (scanf_s("%d",&innum)==1)
+	{
+		if (innum <= 0)
+		{
+			printf("bye,bye!");
+			break;
+		}
+		hours = innum / timeeach;
+		minute = innum - hours*timeeach;
+		printf("The time you have enter is %dhours%dninutes.\n",hours,minute);
+	}
+}
