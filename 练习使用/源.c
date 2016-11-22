@@ -1,9 +1,10 @@
 #include<stdio.h>
-int main()
+int main(void)
 {
-	int i = 2147483647;
-	unsigned int j = 4294967200;
-	printf("%.10d%.10d%.10d\n", i, i + 1, i + 2);
-	printf("%.10d%.10d%.10d\n", j, j++, j + 2);
+	printf("Type int has a size of %zd bytes.\n", sizeof(int));
+	printf("Type double has size of %zd bytes.\n", sizeof(double));
+	printf("Type char has size of %zd bytes.\n", sizeof(char));
+	printf("Type long long has size of %zd bytes.\n", sizeof(long long));
+	printf("Type long double has size of %zd bytes.", sizeof(long double));
 	getchar();
 }
