@@ -1,8 +1,9 @@
 #include<stdio.h>
-int main(void)
+int main()
 {
-	int x = 100;
-	printf("dec=%d;octal=%o,hex=%x\n", x, x, x);
-	printf("dec=%d;octal=%#o;hex=%#x\n",x,x,x);
+	int i = 2147483647;
+	unsigned int j = 4294967200;
+	printf("%.10d%.10d%.10d\n", i, i + 1, i + 2);
+	printf("%.10d%.10d%.10d\n", j, j++, j + 2);
 	getchar();
 }
