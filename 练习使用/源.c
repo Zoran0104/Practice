@@ -1,21 +1,36 @@
 #include<stdio.h>
-#define SIZE 3
+#include<ctype.h>
+#include<stdbool.h>
+#define STOP '|'
 int main(void)
 {
-	int score[SIZE];
-	int i,sum=0;
-	double ave;
-	for (i = 0; i < SIZE; i++)
-		scanf_s("%d", &score[i]);
-	printf("您输入的分数如下：\n");
-	for (i = 0; i <SIZE; i++)
+	char c;
+	char prev;
+	long n_chars = 0;
+	int n_lines = 0;
+	int n_words = 0;
+	int p_lines = 0;
+	bool inword = false;
+	printf("Enter text to be analyzed(| to terminate):\n");
+	prev = '\n';
+	while ((c = getchar()) != STOP)
 	{
-		printf("%5d", score[i]);
-		sum += score[i];
+		n_chars++;
+		if (c == '\n')
+			n_lines++;
+		if (!isspace(c) && !inword)
+		{
+			inword = true;
+			n_words++;
+		}
+		if (isspace(c) && inword)
+			inword = false;
+		prev = c;
 	}
-	ave = (double)5 / 6;
-	printf("\n您输入的成绩的总和为%d平均值为%.2lf", sum,ave);
+	if (prev != '\n')
+		p_lines = 1;
+	printf("characters=%ld,words=%d,lines=%d,", n_chars, n_words, n_lines);
+	printf("partial lines=%d\n", p_lines);
 	system("pause");
-	
-	
+	return 0;
 }
