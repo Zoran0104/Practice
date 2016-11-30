@@ -4,14 +4,14 @@
 #define STOP '|'
 int main(void)
 {
-	bool inword;
+
 	char c;
-	long chars = 0;
-	int words = 0;
+	int words=0;
+	long chars=0;
 	int lines = 0;
 	int prelines = 0;
+	bool inword = false;
 	char pre = '\n';
-	inword = false;
 	while ((c = getchar()) != STOP)
 	{
 		chars++;
@@ -27,7 +27,8 @@ int main(void)
 		}
 		pre = c;
 	}
-	pre = '\n' ? prelines = 1 : 1;
-	printf("chars=%ld,lines=%d,words=%d,prelines=%d", chars, lines, words, prelines);
-	system("pause");
+	pre == '\n'? 1 : prelines++;
+	printf("chars:%ld,lines:%d,words=%d,prelines=%d", chars, lines, words, prelines);
+
+
 }
