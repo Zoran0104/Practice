@@ -1,46 +1,29 @@
 #include<stdio.h>
-int strlens(const char *s);
-char strcpys(char *s, const char *ss);
-int strcmps(const char *s, const char *ss);
-char strcats(char *s, char *ss);
-
+#include<ctype.h>
+#define STOP '|'
 int main(void)
 {
-}
-	
-
-
-int strlens(const char *s)
-{
-	int len = 0;
-	while (*s++)
-		len++;
-	return len+1;
-}
-
-char strcpys(char * s, const char * ss)
-{
-	while (*s++ = *ss++);
-	return s;
-}
-int strcmps(const char *s, const char *ss)
-{
-	char *s3 = s, *s4 = ss;
-	while (*s3++ != *s4++ && (*s3 || *s4))
+	char a[50];
+	char b[50];
+	char c;
+	int i = 0;
+	int j = 0;
+	printf("请输入您要筛选的字符串：以‘|’结束");
+	while ((c = getchar()) != STOP)
 	{
-		if (*--s3<*--s4)
-			return -1;
-		else if (*s3>*s4) return 1;
-		else return 0;
-		s3++; s4++;
+		a[i] = c;
+		i++;
 	}
+	a[i] = '\0';
+	for (i = 0; i < 50; i++)
+	{
+		if (a[i]>='a'&&a[i]<='z')
+		{
+			b[j] = a[i];
+			j++;
+		}
+	}
+	b[j] = '\0';
+	printf("a的数组里含有的字符是：%s\nb的数组里含有的字符是：%s。", a, b);
+	system("pause");
 }
-char strcats(char *s, char *ss)  
-{
-	char *q = s;
-	while (*(s++));
-	s--;
-	while ((*(s++) = *ss, *(ss++)));
-	return q;
-}
-
