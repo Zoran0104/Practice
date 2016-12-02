@@ -1,35 +1,28 @@
 #include<stdio.h>
-#include<ctype.h>
-#include<stdbool.h>
-#define STOP '@'
-int  main(void)
+int main(void)
 {
-	while (true)
+	int i;
+	int a[10];
+	int max;
+	int temp=0;
+	int tempnum;
+	for (i = 0; i < 10; i++)
+		scanf_s("%d", &a[i]);
+	max = a[0];
+	for (i = 1; i < 10; i++)
 	{
-		char c;
-		char prechar = '\n';
-		int preline = 0;
-		int lines = 0;
-		int words = 0;
-		long chars = 0;
-		bool inword = false;
-		while ((c = getchar()) != STOP)
+		if (max < a[i])
 		{
-			chars++;
-			c == '\n' ? lines++ : 1;
-			if (!isspace(c) && !inword && !ispunct(c))
-			{
-				words++;
-				inword = true;
-			}
-			if (isspace(c) && inword)
-			{
-				inword = false;
-			}
-			prechar = c;
+			max = a[i];
+			temp = i;
 		}
-		prechar == '\n' ? 1 : preline++;
-		printf("chars=%ld,words=%d,lines=%d", chars, words, lines);
-		preline == 0 ? printf(".\n") : printf(",preline=1.\n");
 	}
+	printf("max=%d\n", max);
+	tempnum = a[temp];
+	a[temp] = a[9];
+	a[9] = tempnum;
+	printf("重新排序后的数组为：");
+	for (i = 0; i < 10; i++)
+		printf("%-3d", a[i]);
+	system("pause");
 }
