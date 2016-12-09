@@ -18,7 +18,7 @@ int main(void)
 	for (k=0;k<=sa;k++)
 	{
 		for (i = 0; b[i] != 0; i++)
-			if (b[i] != a[k + 1])
+			if (b[i] != a[k+1])
 				break;
 		if (b[i] == 0)
 			n++;
