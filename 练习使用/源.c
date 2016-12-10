@@ -1,30 +1,49 @@
-#include<stdio.h>
-#include<string.h>
-int main(void)
-{
-	char a[100];
-	char b[100];
-	int i;
-	int j;
-	int min;
-	printf("ÇëÊäÈëÒ»¶ÎÓĞĞò×Ö·û´®£º");
-	gets(a);
-	printf("ÇëÊäÈëÁíÒ»¶ÎÓĞĞò×Ö·û´®£º");
-	gets(b);
-	strcat(a, b);
-	for (i=0;i<=strlen(a);i++)
-	{
-		min = a[i];
-		for (j = i; j <strlen(a); j++)
-		{
-			if (a[j] < min)
-			{
-				min = a[j];
-				a[j] = a[i];
-				a[i] = min;
-			}
+ï»¿#include<stdio.h>
+#define SIZE 20 
+int column; 
+int row;
+void inputMatrix(int a[][SIZE], int n, int m) { 
+	int i, j;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			scanf("%d", &a[i][j]);
 		}
 	}
-	puts(a);
-	system("pause");
+}
+
+void outputMatrix(int b[][SIZE], int n, int m) {
+	int i, j;
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < m; j++) {
+			printf("%d ", b[i][j]);
+		}
+		printf("\n"); 
+	}
+}
+
+void matrixTransport(int a[][SIZE], int b[][SIZE]) {
+	int i, j;
+	for (i = 0; i < row; i++) {
+		for (j = 0; j < column; j++) {
+			b[i][j] = a[j][i];
+
+		}
+	}
+}
+int main()
+{
+
+	int a[SIZE][SIZE] = { 0 };
+	int b[SIZE][SIZE] = { 0 };
+	printf("è¯·è¾“å…¥æ‚¨è¦è¿›è¡Œè½¬ç½®çš„çŸ©é˜µçš„è¡Œæ•° : column =Â  ");
+	scanf("%d", &column);
+	printf("\nè¯·è¾“å…¥æ‚¨è¦è¿›è¡Œè½¬ç½®çš„çŸ©é˜µçš„åˆ—æ•° : row = ");
+	scanf("%d", &row);
+	printf("è¯·è¾“å…¥ä¸€ä¸ª %d X %d çš„çŸ©é˜µ \n", column, row);
+	inputMatrix(a, column, row);
+	matrixTransport(a, b);
+	printf("è½¬ç½®åçš„çŸ©é˜µæ˜¯ :\n");
+	outputMatrix(b, row, column);
+	getchar();
+	return 0;
 }
