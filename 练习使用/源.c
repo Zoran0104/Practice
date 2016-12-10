@@ -5,20 +5,26 @@ int main(void)
 	char a[100];
 	char b[100];
 	int i;
-	int k;
-	int n=0;
-	printf("请输入一段字符：");
-	scanf("%s", a);
-	printf("请输入另一段字符串：");
-	scanf("%s", b);
-	for (k=0;k<=strlen(a)-strlen(b);k++)
+	int j;
+	int min;
+	printf("请输入一段有序字符串：");
+	gets(a);
+	printf("请输入另一段有序字符串：");
+	gets(b);
+	strcat(a, b);
+	for (i=0;i<=strlen(a);i++)
 	{
-		for (i = 0; b[i] != 0; i++)
-			if (b[i] != a[k+i])
-				break;
-		if (b[i] == 0)
-			n++;
+		min = a[i];
+		for (j = i; j <strlen(a); j++)
+		{
+			if (a[j] < min)
+			{
+				min = a[j];
+				a[j] = a[i];
+				a[i] = min;
+			}
+		}
 	}
-	printf("%d", n);
+	puts(a);
 	system("pause");
 }
