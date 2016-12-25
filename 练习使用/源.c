@@ -1,31 +1,37 @@
-﻿#include<stdio.h>
-void myswap1(int x, int y);
-void myswap2(int *p, int *q);
+﻿/*#include<stdio.h>
+#include<stdbool.h>
+#include<ctype.h>
+#define STOP '@'
 int main(void)
 {
-	int x = 3;
-	int y = 5;
-	printf("before:x=%d,y=%d\n", x, y);
-	myswap1(x, y);
-	printf("after:x=%d,y=%d", x, y);
-	myswap2(&x, &y);
-	printf("after:x=%d,y=%d", x, y);
+	while (1)
+	{
+		char c;
+		int lines = 0;
+		int words = 0;
+		int chars = 0;
+		char huancun = 0;
+		int prelines = 0;
+		bool inword = false;
+		while ((c = getchar()) != STOP)
+		{
+			chars++;
+			if (isspace(c) && inword)
+			{
+				inword = false;
+			}
+			if (!isspace(c) && !inword)
+			{
+				inword = true;
+				words++;
+			}
+			if (c == '\n')
+				lines++;
+			huancun = c;
+		}
+		if (huancun != '\n')
+			prelines++;
+		printf("行数：%d；字符数：%d；单词数：%d；不完整行：%d\n", lines, chars, words, prelines);
+	}
 	system("pause");
-}
-
-void myswap1(int x, int y)
-{
-	int z = 0;
-	z = x;
-	x = y;
-	y = z;
-
-}
-
-void myswap2(int *p, int *q)
-{
-	int z = 0;
-	z = *p;
-	*p = *q;
-	*q = z;
-}
+}*/
