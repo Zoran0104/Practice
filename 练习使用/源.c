@@ -1,37 +1,79 @@
-﻿/*#include<stdio.h>
-#include<stdbool.h>
-#include<ctype.h>
-#define STOP '@'
+﻿#include<stdio.h>
+#define SIZE 100
+void mystrcpy(char *str1, char *str2);
+int mystrcmp(char *str1, char *str2);
+void mystrcat(char *str1, char *str2);
+void mystrchr(char *str, char ch);
 int main(void)
 {
-	while (1)
-	{
-		char c;
-		int lines = 0;
-		int words = 0;
-		int chars = 0;
-		char huancun = 0;
-		int prelines = 0;
-		bool inword = false;
-		while ((c = getchar()) != STOP)
-		{
-			chars++;
-			if (isspace(c) && inword)
-			{
-				inword = false;
-			}
-			if (!isspace(c) && !inword)
-			{
-				inword = true;
-				words++;
-			}
-			if (c == '\n')
-				lines++;
-			huancun = c;
-		}
-		if (huancun != '\n')
-			prelines++;
-		printf("行数：%d；字符数：%d；单词数：%d；不完整行：%d\n", lines, chars, words, prelines);
-	}
+	char str1[SIZE];
+	char str2[SIZE];
+	char str[SIZE];
+	char ch;
+	printf("以下是第一题：\n请输入字符数组str2：");
+	gets(str2);
+	mystrcpy(str1, str2);
+	printf("str1是：");
+	puts(str1);
+	printf("以下是第二题：\nstr2=%s,请输入字符数组str1：",str2);
+	gets(str1);
+	printf("str1与str2的比较结果：%d\n以下是第三题：", mystrcmp(str1, str2));
+	mystrcat(str1, str2);
+	printf("str1拼接str2后是");
+	puts(str1);
+	printf("以下是第四题：\n请输入str的值：");
+	gets(str);
+	printf("请输入含有字符的值：");
+	scanf("%c", &ch);
+	mystrchr(str, ch);
 	system("pause");
-}*/
+}
+
+void mystrcpy(char * str1, char * str2)
+{
+	char *p = str2;
+	char *q = str1;
+	while (*q++ = *p++)
+		;
+	q = 0;
+}
+
+int mystrcmp(char * str1, char * str2)
+{
+	int i;
+	int a;
+	char *p = str1;
+	char *q = str2;
+	for (i = 0; *(p+i)!=0&&*(q+i)!=0; i++)
+	{
+		if (*(p + i) > *(q + i))
+			return 1;
+		else if (*(p + i) < *(q + i))
+			return -1;
+	}
+	if (*p != 0 && *q == 0)
+		return 1;
+	if (*p == 0 && *q != 0)
+		return -1;
+	return 0;
+}
+
+void mystrcat(char * str1, char * str2)
+{
+	int i;
+	while (*(str1++));
+	str1--;
+	while ((*(str1++) = *str2, *(str2++)));
+}
+
+void mystrchr(char * str, char ch)
+{
+	int i;
+	char *p = str;
+	for(i=0;i<SIZE;i++)
+		if (*(p + i) == ch)
+		{
+			printf("在第%d个位置", i+1);
+			break;
+		}
+}
