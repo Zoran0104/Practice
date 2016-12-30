@@ -31,11 +31,9 @@ int main(void)
 
 void mystrcpy(char * str1, char * str2)
 {
-	char *p = str2;
-	char *q = str1;
-	while (*q++ = *p++)
+	while (*(str1++) = *(str2++))
 		;
-	q = 0;
+	str1 = 0;
 }
 
 int mystrcmp(char * str1, char * str2)
@@ -51,9 +49,9 @@ int mystrcmp(char * str1, char * str2)
 		else if (*(p + i) < *(q + i))
 			return -1;
 	}
-	if (*p != 0 && *q == 0)
+	if (*(p+i) != 0 && *(q+i) == 0)
 		return 1;
-	if (*p == 0 && *q != 0)
+	if (*(p+i) == 0 && *(q+i) != 0)
 		return -1;
 	return 0;
 }
