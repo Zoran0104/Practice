@@ -1,64 +1,54 @@
-﻿#include<stdio.h>
-void gets_intro(struct me a[]);
-void dosome(struct me a[]);
-struct me
-{
-	char num[10];
-	char name[20];
-	int score[3];
-};
+﻿四、实验结果与分析（含程序、数据记录及分析和实验总结等）：
 
+
+#include<stdio.h>
+#include<math.h>
+void get_x_y(struct ex2 a[]);
+void max_x_y(struct ex2 a[]);
+struct ex2
+{
+	int x;
+	int y;
+};
 int main(void)
 {
-	struct me student[10];
-	gets_intro(student);
-	dosome(student);
+	struct ex2 xy[10];
+	printf("请输入坐标值，x与y空格，一个坐标后回车：");
+	get_x_y(xy);
+	max_x_y(xy);
+
 	system("pause");
 }
-void gets_intro(struct me a[])
+
+void get_x_y(struct ex2 a[])
 {
-	int i,j;
+	int i;
 	for (i = 0; i < 10; i++)
 	{
-		scanf("%s", &a[i].num);
-		scanf("%s", &a[i].name);
-		for (j = 0; j < 3; j++)
-			scanf("%d", &a[i].score[j]);
+		scanf("%d", &a[i].x);
+		scanf("%d", &a[i].y);
 	}
 }
-void dosome(struct me a[])
+
+void max_x_y(struct ex2 a[])
 {
-	double ave[10];
-	int i,j,sum;
-	double temp; 
-	int b[10];
-	int n;
-	for (i = 0; i < 10; i++)
-		b[i] = i;
+	double num[10];
+	int i, j = 0;
+	double max;
 	for (i = 0; i < 10; i++)
 	{
-		sum = 0;
-		for (j = 0; j < 3; j++)
-			sum += a[i].score[j];
-		ave[i] = sum / 3.0;
+		num[i] = sqrt(a[i].x*a[i].x + a[i].y*a[i].y);
 	}
-	for (i = 0; i < 10; i++)
+	max = num[0];
+	for (i = 1; i < 10; i++)
+	{
+		if (max < num[i])
 		{
-			n = i;
-			for (j = i; j < 10; j++)
-			{
-				if (ave[i] > ave[j])
-				{
-					temp = b[n];
-					b[n] = b[j];
-					b[j] = temp;
-					temp = ave[i];
-					ave[i] = ave[j];
-					ave[j] = temp;
-			}
+			max = num[i];
+			j = i;
 		}
 	}
-	for (i = 0; i < 10; i++)
-		printf("学号：%s 姓名：%s 成绩1：%d 成绩2：%d 成绩3：%d 平均分：%.2lf\n", a[b[i]].num, a[b[i]].name, 
-			a[b[i]].score[0], a[b[i]].score[1], a[b[i]].score[2], ave[i]);
+	printf("最远的坐标为(%d,%d)，距离为%.2f", a[j].x, a[j].y, max);
 }
+
+
