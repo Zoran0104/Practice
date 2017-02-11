@@ -1,19 +1,30 @@
 ﻿#include<stdio.h>
-int fun(int n);
+#include<stdbool.h>
+#include<ctype.h>
+#define STOP '|'
 int main()
 {
-	for (int i = 1; i != 13; ++i)
-		printf("%d!=%d\n", i, fun(i));
+	char c;
+	int chars = 0;
+	int words = 0;
+	int lines = 0;
+	int sentens = 0;
+	bool inword = false;
+	while ((c = getchar()) != STOP)
+	{
+		++chars;
+		if (!inword && !isspace(c))
+		{
+			++words;
+			inword = true;
+		}
+		if (c == '\n')
+			++lines;
+		if (c == '.')
+			++sentens;
+		if (inword&&isspace(c))
+			inword = false;
+	}
+	printf("chars:%d,words=%d,lines=%d,sentens=%d", chars, words, lines, sentens);
 	while (1);
-
-}
-
-int fun(int n)
-{
-	int i = n;
-	if (n != 1)
-		i *= fun(n - 1);
-	if (n == 1)
-		return 1;
-	return i;
 }
