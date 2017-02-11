@@ -1,30 +1,38 @@
 ﻿#include<stdio.h>
-#include<stdbool.h>
-#include<ctype.h>
-#define STOP '|'
+#include<math.h>
+int to_ten(char num[], int jz);
 int main()
 {
-	char c;
-	int chars = 0;
-	int words = 0;
-	int lines = 0;
-	int sentens = 0;
-	bool inword = false;
-	while ((c = getchar()) != STOP)
+	while (1)
 	{
-		++chars;
-		if (!inword && !isspace(c))
-		{
-			++words;
-			inword = true;
-		}
-		if (c == '\n')
-			++lines;
-		if (c == '.')
-			++sentens;
-		if (inword&&isspace(c))
-			inword = false;
+		char num[100];
+		int jz;
+		printf("请输入一个数：");
+		scanf("%s", num);
+		printf("请输入这个数的进制：");
+		scanf("%d", &jz);
+		to_ten(num, jz);
 	}
-	printf("chars:%d,words=%d,lines=%d,sentens=%d", chars, words, lines, sentens);
-	while (1);
+}
+
+int to_ten(char num[], int jz)
+{
+	int n=0;
+	int temp = 0;
+	for (int i = 0;; ++i)
+	{
+		if (num[i] == 0)
+			break;
+		else ++n;
+	}
+	int sum=0,p;
+	for (int i = 0; i != n; ++i)
+	{
+		if (num[i] >= 'A')
+			temp = num[i] - 'A'+10;
+		else temp = num[i]-48;
+		p = pow(jz, n - i - 1);
+		sum += temp * p;
+	}
+	printf("%d\n", sum);
 }
