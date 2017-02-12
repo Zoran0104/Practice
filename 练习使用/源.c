@@ -1,25 +1,19 @@
 ﻿#include<stdio.h>
-#define SIZE 1001
+#include<stdbool.h>
+#define MAX_Lenth 1001
 int main()
 {
-	int prime[SIZE] = { 0 };
-	for (int i = 2; i != SIZE; ++i)
-		prime[i] = 1;
-	for (int i = 2; i*i < SIZE; ++i)
+	bool prime[MAX_Lenth] = { false };
+	for (int i = 2; i != MAX_Lenth; ++i)
+		prime[i] = true;
+	for (int i = 2; i*i < MAX_Lenth; ++i)
 	{
-		if (prime[i])
-		{
-			for (int j = i*i; j < SIZE; ++j)
-			{
-				if (!prime[i]) 
-					continue;
-				else if (j%i == 0) 
-					prime[j] = 0;
-			}
-		}
+		if (!prime[i]) continue;
+		for (int j = i*i; j < MAX_Lenth; ++j)
+			if (j%i == 0) prime[j] = false;
 	}
 	int n = 1;
-	for (int i = 2; i < SIZE; ++i)
+	for (int i = 2; i < MAX_Lenth; ++i)
 	{
 		if (prime[i])
 		{
@@ -28,9 +22,9 @@ int main()
 		}
 		if (n > 10)
 		{
-			putchar('\n');
+			printf("\n");
 			n = 1;
 		}
 	}
-	system("pause");
+	while (1);
 }
