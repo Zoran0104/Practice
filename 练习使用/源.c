@@ -1,33 +1,36 @@
 ﻿#include<stdio.h>
+#define SIZE 1001
 int main()
 {
-	int isprime[1001] = { 0 };
-	for (int i = 2; i != 1001; ++i)
-		isprime[i] = 1;
-	for (int i = 2; i*i<1001; ++i)
+	int prime[SIZE] = { 0 };
+	for (int i = 2; i != SIZE; ++i)
+		prime[i] = 1;
+	for (int i = 2; i*i < SIZE; ++i)
 	{
-		if (isprime[i] == 1)
+		if (prime[i])
 		{
-			for (int j = i* i; j < 1001; ++j)
+			for (int j = i*i; j < SIZE; ++j)
 			{
-				if (!isprime[i]) continue;
-				else if (j%i == 0) isprime[j] = 0;
+				if (!prime[i]) 
+					continue;
+				else if (j%i == 0) 
+					prime[j] = 0;
 			}
 		}
 	}
 	int n = 1;
-	for (int i = 1; i != 1001; ++i)
+	for (int i = 2; i < SIZE; ++i)
 	{
-		
-		if (isprime[i] == 1)
+		if (prime[i])
 		{
-			printf("%4d", i);
+			printf("%6d", i);
 			++n;
 		}
-		if (n > 10) {
+		if (n > 10)
+		{
 			putchar('\n');
 			n = 1;
 		}
 	}
-	while (1);
+	system("pause");
 }
