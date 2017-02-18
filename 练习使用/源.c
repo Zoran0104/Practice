@@ -1,39 +1,50 @@
 ﻿#include<stdio.h>
-#include<stdbool.h>
-void isprime(int num, bool a[]);
-
+#include<math.h>
+int to_ten(char num[], int yjz);
+void to_mjz(int n, int mjz);
 int main()
 {
-	printf("Please enter a number the max");
-	int num;
-	scanf("%d", &num);
-	bool *prime=0;
-	prime = (bool *)malloc(sizeof(bool)*num);
-	isprime(num, prime);
+	char num[100];
+	int yjz = 0, mjz = 0;
+	scanf("%s", num);
+	scanf("%d%d", &yjz,&mjz);
+	to_mjz(to_ten(num, yjz), mjz);
 	system("pause");
 }
 
-void isprime(int num, bool a[])
+int to_ten(char num[], int yjz)
 {
-	a[0] = a[1] = false;
-	for (int i = 2; i <= num; ++i)
-		a[i] = true;
-	for (int i = 2; i*i <= num; ++i)
-		if (a[i])
-			for (int j = i*i; j <= num; ++j)
-				if (j%i == 0)
-					a[j] = false;
-	for(int i=6;i<=num;i+=2)
+	int n = 0;
+	for (; num[++n] != 0;);
+	int ten_num=0;
+	for (int i = 0; i < n; ++i)
 	{
-		int flag = 1;
-		for (int j = 2; j <= i/2; ++j)
-		{
-			if (a[j] && a[i - j])
-			{
-				printf("%d=%d+%d\n", i, j, i - j);
-				flag = 0;
-				break;
-			}
-		}
+		int temp = 0;
+		if (num[i] >= 'A')temp = num[i] - 'A' + 10;
+		else temp = num[i] - '0';
+		ten_num += temp * pow(yjz, n - 1 - i);
+	}
+	return ten_num;
+}
+
+void to_mjz(int n, int mjz)
+{
+	int num[100];
+	int j = 0;
+	if (mjz == 10)
+	{
+		printf("%d", n);
+		return;
+	}
+	while (n / mjz)
+	{
+		int temp = n%mjz;
+		num[j++] = (temp > 9) ? temp + 'A' - 10 : temp + '0';
+		n /= mjz;
+	}
+	num[j] = (n%mjz > 9) ? n % mjz + 'A' - 10 : n % mjz + '0';
+	for (int i = j; i != -1; --i)
+	{
+		printf("%c", num[i]);
 	}
 }
