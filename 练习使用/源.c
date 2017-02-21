@@ -1,50 +1,38 @@
 ﻿#include<stdio.h>
-#include<math.h>
-int to_ten(char num[], int yjz);
-void to_mjz(int n, int mjz);
+#include<stdbool.h>
+void Prime(bool a[], int num);
 int main()
 {
-	char num[100];
-	int yjz = 0, mjz = 0;
-	scanf("%s", num);
-	scanf("%d%d", &yjz,&mjz);
-	to_mjz(to_ten(num, yjz), mjz);
+	printf("Please enter the number you entered:");
+	int num = 0;
+	scanf("%d", &num);
+	bool *p = 0;
+	p = (bool *)malloc(sizeof(bool)*num);
+	Prime(p, num);
 	system("pause");
 }
 
-int to_ten(char num[], int yjz)
+void Prime(bool a[], int num)
 {
-	int n = 0;
-	for (; num[++n] != 0;);
-	int ten_num=0;
-	for (int i = 0; i < n; ++i)
+	a[0] = a[1] = false;
+	for (int i = 2; i <= num; ++i)
+		a[i] = true;
+	for (int i = 2; i*i <= num; ++i)
 	{
-		int temp = 0;
-		if (num[i] >= 'A')temp = num[i] - 'A' + 10;
-		else temp = num[i] - '0';
-		ten_num += temp * pow(yjz, n - 1 - i);
+		if (a[i])
+			for (int j = i*i; j <= num; ++j)
+				if (j%i == 0)
+					a[j] = false;
 	}
-	return ten_num;
-}
-
-void to_mjz(int n, int mjz)
-{
-	int num[100];
-	int j = 0;
-	if (mjz == 10)
+	for (int i = 6; i <= num; i += 2)
 	{
-		printf("%d", n);
-		return;
-	}
-	while (n / mjz)
-	{
-		int temp = n%mjz;
-		num[j++] = (temp > 9) ? temp + 'A' - 10 : temp + '0';
-		n /= mjz;
-	}
-	num[j] = (n%mjz > 9) ? n % mjz + 'A' - 10 : n % mjz + '0';
-	for (int i = j; i != -1; --i)
-	{
-		printf("%c", num[i]);
+		for (int j = 2; j < i / 2; ++j)
+		{
+			if (a[j] && a[i - j])
+			{
+				printf("%d=%d+%d\n", i, j, i - j);
+				break;
+			}
+		}
 	}
 }
