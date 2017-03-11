@@ -1,38 +1,59 @@
-﻿#include<stdio.h>
-struct Famil
+﻿#include<stdlib.h>
+#include<stdbool.h>
+#include<stdio.h>
+void Find();
+bool Check_Num(char a[]);
+bool Check_Name(char a[]);
+void Get_info();
+struct Stu_birth
 {
-	char name[10];
-	int age;
+	int years;
+	int months;
+	int days;
 };
+struct Stu_info
+{
+	char cNum[20];
+	char cName[10];
+	char sex;
+	struct Stu_birth birth;
+	char Tel[11];
+};
+typedef struct Stu_info info;
 int main()
 {
-	FILE *p=NULL;
-	int max = 0,min=0;
-	struct Famil FAM[100];
-	p=fopen("d:\\home.txt", "w");
-	if (p == NULL) return -1;
-	printf("请输入你的家庭成员信息：(以‘| 0’结束)\n");
-	scanf("%s %d", FAM[0].name, &FAM[0].age);
-	int i = 0;
-	while(FAM[i].name[0]!='|')
+		
+}
+
+bool Check_Num(char a[])
+{
+	for (int i = 0; a[i] != 0; ++i)
+		if (a[i] > '9'&&a[i] < '0')
+			return false;
+	return true;
+}
+
+bool Check_Name(char a[])
+{
+	for(int i=0;a[i]!=0;++i)
+		if(a[])
+	return false;
+}
+
+void Get_info()
+{
+	printf("请输入您要录入的信息的人数：");
+	int stunum = 0;
+	while (scanf("%d", &stunum) == 1 && stunum <= 0)
+		printf("您输入的数小于0，请重新输入：");
+	info Info[1000];
+	for (int i = 0; i < stunum; ++i)
 	{
-		fprintf(p, "%s %d\n", FAM[i].name, FAM[i].age);
-		scanf("%s %d", FAM[++i].name, &FAM[i].age);
+		pritnf("请输入第%d位同学的学号：", i + 1);
+		while (scanf("%s", Info[i].cNum) == 1 && !Check_Num(Info[i].cNum))
+			printf("您输入的学号不符合要求，请重新输入：");
+		pritnf("请输入第%d位同学的姓名：", i + 1);
+		while (scanf("%s", Info[i].cName) == 1 && !Check_Name(Info[i].cName))
+			printf("您输入的学号不符合要求，请重新输入：");
 	}
-	fclose(p);
-	i = 0;
-	p=fopen("d:\\home.txt", "r");
-	if (p == NULL) return -1;
-	while(!feof(p))
-	{
-		fscanf(p, "%s %d\n", FAM[i].name, &FAM[i].age);
-		printf("%s %d\n", FAM[i].name, FAM[i].age);
-		max = (FAM[max].age > FAM[i].age) ? max : i;
-		min = (FAM[min].age > FAM[i].age) ? i : min;
-		++i;
-	}
-	fclose(p);
-	printf("年龄最大的是%s,TA的年龄是%d\n年龄最小的是%s,TA的年龄是%d\n"
-		, FAM[max].name, FAM[max].age,FAM[min].name,FAM[min].age);
-	system("pause");
 }
