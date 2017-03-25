@@ -17,6 +17,11 @@ void Delete_Base_Name();
 void Delete_Base_Tel();
 void Delete_Base_Birth();
 void Sort_Home();
+void Sort_Base_Num();
+void Sort_Base_Name();
+void Sort_Base_Tel();
+void Sort_Base_Sex();
+void Sort_Base_Birth();
 void print_Info();
 void print_one_info(struct Stu_info info);
 void title();
@@ -295,6 +300,361 @@ start:
 
 void Sort_Home()
 {
+
+	system("cls");
+	printf("      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n");
+	printf("      1.按照学号排序\n");
+	printf("      2.按照姓名排序\n");
+	printf("      3.按照生日排序\n");
+	printf("      4.按照手机号码排序\n");
+	printf("      5.按照性别排序\n");
+	printf("      6.回到首页\n");
+	printf("      0.退出程序\n");
+	printf("      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|\n");
+	printf("       请输入您要进行的操作：");
+	int i = 0;
+start:
+	scanf("%d", &i);
+	switch (i)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Sort_Base_Num();
+		break;
+	case 2:
+		Sort_Base_Name();
+		break;
+	case 3:
+		Sort_Base_Birth();
+		break;
+	case 4:
+		Sort_Base_Tel();
+		break;
+	case 5:
+		Sort_Base_Sex();
+		break;
+	case 6:
+		home();
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
+}
+
+void Sort_Base_Num()
+{
+	system("cls");
+	struct Stu_info Info[10000];
+	FILE *fp = fopen("D:\\information.txt", "r");
+	if (fp == NULL)
+		printf("关联文件失败！");
+	int n = 0;
+	while (feof(fp) == 0)
+	{
+		fscanf(fp, "%s %s %s %d-%d-%d %s\n", Info[n].cNum, Info[n].cName,
+			Info[n].sex, &Info[n].birth.years, &Info[n].birth.months, &Info[n].birth.days,
+			Info[n].Tel);            //起初这里每处都用了i++ 所以同一句不应该对同一个变量同时使用多次i++操作
+		++n;
+	}
+	fclose(fp);
+	struct Stu_info temp;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (strcmp(Info[i].cNum, Info[j].cNum) > 0)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+		}
+	}
+	title();
+	for (int i = 0; i < n; ++i)
+	{
+		print_one_info(Info[i]);
+	}
+	printf("【1】查找数据  【2】添加数据  【3】回到首页   【4】查看所有数据 【0】退出程序\n请输入您要继续的操作：");
+start:
+	scanf("%d", &n);
+	switch (n)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Find_Home();
+		break;
+	case 2:
+		Add_info();
+		break;
+	case 3:
+		home();
+		break;
+	case 4:
+		print_Info();
+		break;
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
+}
+
+void Sort_Base_Name()
+{
+	system("cls");
+	struct Stu_info Info[10000];
+	FILE *fp = fopen("D:\\information.txt", "r");
+	if (fp == NULL)
+		printf("关联文件失败！");
+	int n = 0;
+	while (feof(fp) == 0)
+	{
+		fscanf(fp, "%s %s %s %d-%d-%d %s\n", Info[n].cNum, Info[n].cName,
+			Info[n].sex, &Info[n].birth.years, &Info[n].birth.months, &Info[n].birth.days,
+			Info[n].Tel);            //起初这里每处都用了i++ 所以同一句不应该对同一个变量同时使用多次i++操作
+		++n;
+	}
+	fclose(fp);
+	struct Stu_info temp;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (strcmp(Info[i].cName, Info[j].cName) > 0)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+		}
+	}
+	title();
+	for (int i = 0; i < n; ++i)
+	{
+		print_one_info(Info[i]);
+	}
+	printf("【1】查找数据  【2】添加数据  【3】回到首页   【4】查看所有数据 【0】退出程序\n请输入您要继续的操作：");
+start:
+	scanf("%d", &n);
+	switch (n)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Find_Home();
+		break;
+	case 2:
+		Add_info();
+		break;
+	case 3:
+		home();
+		break;
+	case 4:
+		print_Info();
+		break;
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
+}
+
+void Sort_Base_Tel()
+{
+	system("cls");
+	struct Stu_info Info[10000];
+	FILE *fp = fopen("D:\\information.txt", "r");
+	if (fp == NULL)
+		printf("关联文件失败！");
+	int n = 0;
+	while (feof(fp) == 0)
+	{
+		fscanf(fp, "%s %s %s %d-%d-%d %s\n", Info[n].cNum, Info[n].cName,
+			Info[n].sex, &Info[n].birth.years, &Info[n].birth.months, &Info[n].birth.days,
+			Info[n].Tel);            //起初这里每处都用了i++ 所以同一句不应该对同一个变量同时使用多次i++操作
+		++n;
+	}
+	fclose(fp);
+	struct Stu_info temp;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (strcmp(Info[i].Tel, Info[j].Tel) > 0)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+		}
+	}
+	title();
+	for (int i = 0; i < n; ++i)
+	{
+		print_one_info(Info[i]);
+	}
+	printf("【1】查找数据  【2】添加数据  【3】回到首页   【4】查看所有数据 【0】退出程序\n请输入您要继续的操作：");
+start:
+	scanf("%d", &n);
+	switch (n)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Find_Home();
+		break;
+	case 2:
+		Add_info();
+		break;
+	case 3:
+		home();
+		break;
+	case 4:
+		print_Info();
+		break;
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
+}
+
+void Sort_Base_Sex()
+{
+	system("cls");
+	struct Stu_info Info[10000];
+	FILE *fp = fopen("D:\\information.txt", "r");
+	if (fp == NULL)
+		printf("关联文件失败！");
+	int n = 0;
+	while (feof(fp) == 0)
+	{
+		fscanf(fp, "%s %s %s %d-%d-%d %s\n", Info[n].cNum, Info[n].cName,
+			Info[n].sex, &Info[n].birth.years, &Info[n].birth.months, &Info[n].birth.days,
+			Info[n].Tel);            //起初这里每处都用了i++ 所以同一句不应该对同一个变量同时使用多次i++操作
+		++n;
+	}
+	fclose(fp);
+	struct Stu_info temp;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (strcmp(Info[i].sex, Info[j].sex) > 0)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+		}
+	}
+	title();
+	for (int i = 0; i < n; ++i)
+	{
+		print_one_info(Info[i]);
+	}
+	printf("【1】查找数据  【2】添加数据  【3】回到首页   【4】查看所有数据 【0】退出程序\n请输入您要继续的操作：");
+start:
+	scanf("%d", &n);
+	switch (n)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Find_Home();
+		break;
+	case 2:
+		Add_info();
+		break;
+	case 3:
+		home();
+		break;
+	case 4:
+		print_Info();
+		break;
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
+}
+
+void Sort_Base_Birth()
+{
+	system("cls");
+	struct Stu_info Info[10000];
+	FILE *fp = fopen("D:\\information.txt", "r");
+	if (fp == NULL)
+		printf("关联文件失败！");
+	int n = 0;
+	while (feof(fp) == 0)
+	{
+		fscanf(fp, "%s %s %s %d-%d-%d %s\n", Info[n].cNum, Info[n].cName,
+			Info[n].sex, &Info[n].birth.years, &Info[n].birth.months, &Info[n].birth.days,
+			Info[n].Tel);            //起初这里每处都用了i++ 所以同一句不应该对同一个变量同时使用多次i++操作
+		++n;
+	}
+	fclose(fp);
+	struct Stu_info temp;
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (Info[i].birth.years>Info[j].birth.years)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+			else if (Info[i].birth.years == Info[j].birth.years&&Info[i].birth.months >
+				Info[j].birth.months)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+			else if (Info[i].birth.years == Info[j].birth.years&&Info[i].birth.months ==
+				Info[j].birth.months&&Info[i].birth.days>Info[i].birth.days)
+			{
+				temp = Info[i];
+				Info[i] = Info[j];
+				Info[j] = temp;
+			}
+		}
+	}
+	title();
+	for (int i = 0; i < n; ++i)
+	{
+		print_one_info(Info[i]);
+	}
+	printf("【1】查找数据  【2】添加数据  【3】回到首页   【4】查看所有数据 【0】退出程序\n请输入您要继续的操作：");
+start:
+	scanf("%d", &n);
+	switch (n)
+	{
+	case 0:
+		exit(0);
+		break;
+	case 1:
+		Find_Home();
+		break;
+	case 2:
+		Add_info();
+		break;
+	case 3:
+		home();
+		break;
+	case 4:
+		print_Info();
+		break;
+	default:
+		printf("您输入的序号无效，请重新输入：");
+		goto start;
+	}
 }
 
 void print_Info()
